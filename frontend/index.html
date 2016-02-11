@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>'Ye PI - The Kanye West API</title>
+    <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:400,700' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("a#show-panel").click(function() {
+            $("#lightbox, #lightbox-panel").fadeIn(300);
+        });
+        $("a#close-panel").click(function() {
+            $("#lightbox, #lightbox-panel").fadeOut(300);
+        });
+    });
+    </script>
+    <style>
+    body {
+        font-family: 'Bangers', cursive;
+        font-size: 35px;
+        color: white;
+        background: no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    
+    #quote {
+        -webkit-text-stroke: 1px black;
+        text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        opacity: 0.75;
+    }
+    
+    footer {
+        -webkit-text-stroke: 1px black;
+        font-size: 20px;
+        text-align: right;
+        z-index: 1000;
+        position: fixed;
+        right: 0px;
+        bottom: 0px;
+        height: 30px;
+        width: 100%;
+        padding-right: 15px;
+        background: transparent;
+        text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+    
+    footer a {
+        color: #34eaff;
+        text-decoration: none;
+        text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+    /* Lightbox background */
+    
+    #lightbox {
+        display: none;
+        background: rgba(0, 0, 0, 0.8);
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: 1000;
+    }
+    /* Lightbox panel with some content */
+    
+    #lightbox-panel {
+        display: none;
+        position: fixed;
+        font-family: 'Roboto Mono', 'Andale Mono', 'Courier New', monospace;
+        font-size: 12px;
+        text-shadow: none !important;
+        color: #4b4b4b;
+        top: 100px;
+        left: 50%;
+        margin-left: -250px;
+        width: 500px;
+        background: #FFFFFF;
+        padding: 10px 15px 10px 15px;
+        border: none;
+        z-index: 1001;
+    }
+
+    @media (max-width: 640px) {
+    	footer {
+    		height: 60px;
+    	}
+    }
+    </style>
+</head>
+
+<body>
+    <div id="quote"></div>
+    <div id="lightbox-panel">
+        <h2>'Ye PI - the Kanye West API</h2>
+        <b># GET <a href="https://yepi.io/api/quote" target="_blank">https://yepi.io/api/quote</a></b>
+        <br> &nbsp;&nbsp;Returns a random quote from 'Ye
+        <br> &nbsp;&nbsp;Response 200 (text/plain)
+        <br> &nbsp;&nbsp;YOU AIN'T GOT THE ANSWERS SWAY!!!!!
+        <br>
+        <br>
+        <b># GET <a href="https://yepi.io/api/image" target="_blank">https://yepi.io/api/image</a></b>
+        <br> &nbsp;&nbsp;Returns a URL of a random image of Yeezus himself
+        <br> &nbsp;&nbsp;Response 200 (text/plain)
+        <br> &nbsp;&nbsp;https://d37q6i2m2fcvyp.cloudfront.net/yepi.io/15.jpg
+        <br>
+        <br>
+        <b>Bonus - 'Ye PI Quote Widget</b>
+        <br> &nbsp;&nbsp;Display a random Kanye West quote on your site
+        <br> &nbsp;&nbsp;&lt;script type="text/javascript" src="https://yepi.io/quote.js"&gt;
+        <br>
+        <br>
+        <p align="center"><a id="close-panel" href="#">Close</a></p>
+    </div>
+    <!-- /lightbox-panel -->
+    <div id="lightbox"></div>
+    <footer>
+        <span>'Ye PI - The Kanye West API 👉 Learn to code this at ⚡️&nbsp;<a href="http://12apps.co" target="_blank">12apps.co️</a>&nbsp;⚡️ <a href="#" id="show-panel">API&nbsp;details</a></span>
+    </footer>
+    <script>
+    fetch('https://yepi.io/api/quote', {
+        method: 'get'
+    }).then(function(response) {
+        return response.text();
+    }).then(function(text) {
+        document.getElementById('quote').innerHTML = text;
+    }).catch(function(err) {
+        // Error :(
+    });
+    fetch('https://yepi.io/api/image', {
+        method: 'get'
+    }).then(function(response) {
+        return response.text();
+    }).then(function(text) {
+        var background = text;
+        document.body.style.backgroundImage = "url(" + background + ")";
+    }).catch(function(err) {
+        // Error :(
+    });
+    </script>
+</body>
+
+</html>
+
